@@ -1,10 +1,10 @@
 import axios from "axios";
-
+import { baseUrl } from '../../util';
 export const LOGIN = 'LOGIN';
 export const SIGNUP = 'SIGNUP';
 export const ERROR = 'ERROR';
 
-const baseUrl = 'http://192.168.43.117:8080'
+
 
 export const signup = (data) => {
 
@@ -16,7 +16,7 @@ export const signup = (data) => {
         } catch (error) {
             console.log('[ERROR] ', error);
             dispatch({type: ERROR, error: error})
-        }
+        } 
         dispatch({type: SIGNUP})
     }
 }

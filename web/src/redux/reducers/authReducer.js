@@ -1,3 +1,4 @@
+import { LOGIN } from "../actions/authActions";
 
 const initialState = {
     isAuth: false,
@@ -10,6 +11,14 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
 
     switch (action.type) {
+
+        case LOGIN:
+            return {
+                isAuth: true,
+                username: action.authData.username,
+                userId: action.authData.userId,
+                token: action.authData.token
+            } 
 
         default:
             return state;

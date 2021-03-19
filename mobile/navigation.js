@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Homescreen from './screens/homescreen';
 import Signup from './screens/auth/signup';
 import Login from './screens/auth/login';
+import Users from './screens/users';
+import Messages from './screens/messages';
 
 import { useSelector } from 'react-redux';
 
@@ -21,6 +23,7 @@ const navigation = () => {
         return (
             <Tab.Navigator >
                 <Tab.Screen  name='feed' component={Homescreen} />
+                <Tab.Screen  name='message' component={Users} />
             </Tab.Navigator>
         );
     }
@@ -39,6 +42,7 @@ const navigation = () => {
         <NavigationContainer>
             {isAuth ? <Stack.Navigator>
                 <Stack.Screen options={{headerShown: false}} name='homescreen' component={TabScreens} />
+                <Stack.Screen options={{headerShown: false}} name='message_detail' component={Messages} />
             </Stack.Navigator> :
             <AuthScreens />
             }

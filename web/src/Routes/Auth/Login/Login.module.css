@@ -1,0 +1,26 @@
+.Login__Container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Login__FormContainer {
+    width: 50%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Login__Input {
+    padding: 10px;
+    border-radius: 15;
+    border: 1px solid grey;
+    margin: .5rem 0;
+}
+
+.Login__GoTo__Signup {
+    margin-top: 1rem;
+}
