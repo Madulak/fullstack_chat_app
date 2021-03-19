@@ -18,7 +18,7 @@ const authReducer = (state = initialState, action) => {
                 username: action.authData.username,
                 userId: action.authData.userId,
                 token: action.authData.token
-            }
+            } 
 
         default:
             return state
