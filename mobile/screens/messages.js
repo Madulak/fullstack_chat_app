@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Text, Dimensions, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, FlatList, TouchableOpacity, TextInput, Keyboard } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import * as chatActions from '../redux/actions/chatActions';
@@ -45,13 +45,13 @@ const messages = ({route, navigation}) => {
                             <UserAvatar size={50} name={receiverInfo.username} />
                         </View>
                         
-                        <View>
+                        <View> 
                             <Text>{receiverInfo.username}</Text>
-                            <Text>last seen</Text>
+                            <Text>last seen</Text> 
                         </View>
                     </View>
         
-                    <View style={styles.messagesContainer}>
+                    <View onPress={() => Keyboard.dismiss() } style={styles.messagesContainer}>
                         
                     </View>
         
@@ -61,7 +61,7 @@ const messages = ({route, navigation}) => {
                         </View>
 
                         <View style={styles.textInputContainer}>
-                            <TextInput onChangeText={e => setMessage(e)} value={message} placeholder='Send Message...' />
+                            <TextInput multiline onChangeText={e => setMessage(e)} value={message} placeholder='Send Message...' />
                             <TouchableOpacity onPress={() => sendMessageHandler()}>
                                 <Ionicons name="send-sharp" size={20} color="black" />
                             </TouchableOpacity>
@@ -91,17 +91,21 @@ const styles = StyleSheet.create({
         flex: 0.76,
     },
     sendMessageContainer: {
-        flex: 0.12,
+        // flex: 0.12, 
+        position: 'absolute',
+        bottom: 10,
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-around',
     },
     textInputContainer: {
-        flex: 1,
+        flex: .95,
         borderWidth: 1,
         borderColor: 'grey',
         borderRadius: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        padding: 10,
     }
 })
 
