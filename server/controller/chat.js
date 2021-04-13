@@ -32,23 +32,46 @@ exports.sendMessage = async (req, res, next) => {
   console.log('[USER ID] ',userId, '[RECEIVER] ',receiver, '[MESSAGE] ', message);
 
   try {
-    const userDoc = await User.findById(userId);
-    const findRoom = userDoc.rooms.find(el => el._id == userId);
-    const newMessage = new Message({
-      message: message,
-      sender: userId,
-      receiver: receiver
-    })
-    const theMessage = await newMessage.save();
+    const userDoc = await User.findById(userId)
+                            .populate({ path: 'rooms', populate: { path: 'rooms.roomUsers'} })
+                            // .exec()
+    let populateFields = [];
+    const hello = userDoc.rooms.forEach(async(item, i) => {
+      const one = await Room.findById(item._id).populate('messages').populate('roomUsers')
+      // console.log('[ONE] ', one)
+      
+    });
 
-    const newRoom = new Room({
-      roomUsers: [userId, receiver],
-      messages: [message]
-    })
+    console.log('[USER DOC] ', populateFields);
+    const findRoom = userDoc.rooms.find(el => el == userId);
+    console.log('[FIND ROOM] ', findRoom);
 
-    const saveRoom = await newRoom.save();
+    if (findRoom) {
+      const newMessage = new Message({
+        message: message,
+        sender: userId,
+        receiver: receiver
+      })
+      const theMessage = await newMessage.save();
 
-    console.log('[NEW ROOM CREATED] ', saveRoom);
+      const newRoom = new Room({
+        roomUsers: [userId, receiver],
+        messages: [theMessage]
+      })
+
+      const saveRoom = await newRoom.save();
+
+      const user1 = await User.findById(userId);
+      const user2 = await User.findById(receiver);
+
+      const addroom1 = await user1.rooms.push(saveRoom);
+      const addroom2 = await user2.rooms.push(saveRoom);
+
+      await user1.save();
+      await user2.save();
+
+      console.log('[NEW ROOM CREATED] ', saveRoom);
+    }
   } catch (e) {
     console.log('Error 101', e)
   }
