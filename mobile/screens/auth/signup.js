@@ -4,6 +4,9 @@ import { View, StyleSheet, Text, Dimensions, TextInput, TouchableOpacity, Toucha
 import { useDispatch } from 'react-redux';
 import * as authActions from '../../redux/actions/authActions';
 
+import { AntDesign } from '@expo/vector-icons';
+import { colors } from '../../util';
+
 const { width, height } = Dimensions.get('window');
 
 const signup = ({navigation}) => {
@@ -23,6 +26,14 @@ const signup = ({navigation}) => {
     }
 
     return (
+        <>
+
+            <View style={styles.headerContainer}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <AntDesign name="arrowleft" size={24} color={colors.primary} />
+                </TouchableOpacity>
+            </View>
+
         <View style={styles.container}>
             <View style={styles.formContainer}>
                 <Text style={styles.signupText}>Signup</Text>
@@ -68,6 +79,8 @@ const signup = ({navigation}) => {
                 </TouchableOpacity>
             </View>
         </View>
+
+        </>
     );
 }
 
@@ -77,6 +90,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    headerContainer: {
+        position: 'absolute',
+        padding: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        zIndex: 10,
     },
     signupText: {
         fontSize: 20,

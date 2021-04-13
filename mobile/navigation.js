@@ -3,9 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Homescreen from './screens/homescreen';
+import Auth from './screens/auth/auth';
 import Signup from './screens/auth/signup';
 import Login from './screens/auth/login';
+import Homescreen from './screens/homescreen';
 import Users from './screens/users';
 import Messages from './screens/messages';
 
@@ -32,6 +33,7 @@ const navigation = () => {
 
         return (
             <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name='auth' component={Auth} />
                 <Stack.Screen name='signup' component={Signup} />
                 <Stack.Screen name='login' component={Login} />
             </Stack.Navigator>

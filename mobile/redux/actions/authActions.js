@@ -1,3 +1,5 @@
+import * as SecureStore from 'expo-secure-store';
+
 import axios from "axios";
 import { baseUrl } from '../../util';
 export const LOGIN = 'LOGIN';
@@ -27,7 +29,9 @@ export const login = (data) => {
         let response;
         try {
             response = await axios.post(`${baseUrl}/login`, data);
-            console.log('[RESPONSE] ', response.data);
+            // console.log('[RESPONSE] ', response.data);
+            const saveDetails = await SecureStore.setItemAsync('user_session', JSON.stringify({email: data.email, password: data.password}));
+            console.log('[SAVE DETAILS] ', saveDetails);
         } catch (error) {
             console.log('[ERROR] ', error);
             dispatch({type: ERROR, error: error})

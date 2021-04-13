@@ -45,7 +45,7 @@ const messages = ({route, navigation}) => {
                             <UserAvatar size={50} name={receiverInfo.username} />
                         </View>
                         
-                        <View> 
+                        <View>
                             <Text>{receiverInfo.username}</Text>
                             <Text>last seen</Text> 
                         </View>

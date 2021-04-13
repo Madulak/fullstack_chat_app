@@ -51,7 +51,7 @@ export const send_message = (data) => {
                 }
             }
             response = await axios.post(`${baseUrl}/message/${data.receiverId}`,{message: data.message}, config);
-            console.log('[SEND MESSAGE RESPONSE] ', response.data);
+            // console.log('[SEND MESSAGE RESPONSE] ', response.data);
         } catch (error) {
             console.log('[ERROR MSG] ', error);
             throw error;
