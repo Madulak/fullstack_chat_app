@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as chatActions from '../redux/actions/chatActions';
 
 import UserMessage from '../components/UI/userMessage';
+import { colors } from '../util';
 
 const users = ({navigation}) => {
 
@@ -22,7 +23,9 @@ const users = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text>Get Users</Text>
+            <View style={styles.contactContainer}>
+                <Text style={styles.contactsText}>Contacts</Text>
+            </View>
             <FlatList 
                 data={data}
                 keyExtractor={item => item._id}
@@ -41,6 +44,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         
+    },
+    contactsText: {
+        fontSize: 28,
+        color: colors.primary,
+        fontWeight: 'bold',
+    },
+    contactContainer: {
+        marginHorizontal: 10,
     }
 })
 

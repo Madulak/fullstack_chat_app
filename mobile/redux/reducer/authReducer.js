@@ -1,4 +1,4 @@
-import { LOGIN } from "../actions/authActions";
+import { LOADING, LOGIN } from "../actions/authActions";
 
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
     userId: null,
     token: null,
     error: null,
+    loading: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -19,6 +20,11 @@ const authReducer = (state = initialState, action) => {
                 userId: action.authData.userId,
                 token: action.authData.token
             } 
+        
+        case LOADING:
+            return {
+                loading: action.load
+            }
 
         default:
             return state

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import * as authActions from '../../redux/actions/authActions';
@@ -9,6 +9,7 @@ import * as SecureStore from 'expo-secure-store';
 
 const auth = ({navigation}) => {
 
+    
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,22 +24,29 @@ const auth = ({navigation}) => {
         if (getSavedpasswords) {
             dispatch(authActions.login(authData));
         }
+        
     }
 
 
     return (
         <View style={styles.container}>
-            <View>
-                <Text style={styles.welcomeText}>Welocome to T-Chat</Text>
-            </View>
+            
 
-            <TouchableOpacity onPress={() => navigation.navigate('signup')} style={styles.buttonContainer}>
-                <Text style={styles.buttonText}>Signup</Text>
-            </TouchableOpacity>
+                <>
+                    <View>
+                        <Text style={styles.welcomeText}>Welocome to T-Chat</Text>
+                    </View>
 
-            <TouchableOpacity onPress={() => navigation.navigate('login')} style={styles.buttonContainer}>
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('signup')} style={styles.buttonContainer}>
+                        <Text style={styles.buttonText}>Signup</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => navigation.navigate('login')} style={styles.buttonContainer}>
+                        <Text style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity> 
+                </>
+            
+            
         </View>
     );
 }

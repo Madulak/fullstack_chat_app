@@ -24,7 +24,7 @@ const navigation = () => {
         return (
             <Tab.Navigator >
                 <Tab.Screen  name='feed' component={Homescreen} />
-                <Tab.Screen  name='message' component={Users} />
+                <Tab.Screen  name='contacts' component={Users} />
             </Tab.Navigator>
         );
     }
